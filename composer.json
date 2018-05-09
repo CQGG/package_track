@@ -1,0 +1,27 @@
+{
+    "name": "tinsy/package_track",
+    "description": "package tracking data",
+    "type": "library",
+    "keywords": [
+        "package",
+        "tracking"
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "jaeger/querylist": "^4.0",
+        "ares333/php-curl": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rei",
+            "email": "eva51513@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "track\\":"src"
+        }
+    }
+}
