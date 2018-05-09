@@ -1,6 +1,20 @@
 # package_track
 
-version: 开发 1.0.15
+## About
+
+Package tracking data.
+
+## Demand
+PHP: >=7.0
+
+## Install
+```
+composer require cqgg/package_track
+
+version: 1.0.0
+
+## Http website clone
+https://github.com/CQGG/package_track.git 
 
 eg.
  /**
