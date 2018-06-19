@@ -99,11 +99,11 @@ class ParcelperformApi
      * @return   [type]                           [description]
      */
     public function getAddParcelData($params = []){
-        $paracels = [];
+        $parcels = [];
         foreach($params as $param){
-            isset($param['status']) && empty($param['status'])? $parcels[] = ['parcel_id'=>$param['track_code']] : true;
+            empty($param['status']) ? $parcels[] = ['parcel_id'=>$param['track_code']] : true;
         }
-        return $paracels;
+        return $parcels;
     }
     /**
      * [request 接口请求]
@@ -278,7 +278,7 @@ class ParcelperformApi
         $_this            = new self;
         $api_access_token = $_this->getAccessToken();
         $response         = false;
-        if ($api_access_token) {
+        if ($api_access_token && !empty($parcel_ids)) {
             try {
                 $params = [
                     'json'    => $parcel_ids,
