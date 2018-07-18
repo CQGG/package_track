@@ -35,7 +35,80 @@ class ConfigUtils
         'USPS'        => ['api' => 'UspsTrackRequest', 'carrier_id' => '21051', 'valid_str' => 'Accepted at USPS Origin Facilit', 'over_str' => 'Delivered', 'carrier_code' => 'USPS'],
         'Yodel'       => ['api' => 'YodelTrackRequest', 'carrier_id' => '100017', 'valid_str' => 'Your parcel is at our sort centre', 'over_str' => 'delivered', 'carrier_code' => 'Yodel'],
     ];
-
+    /**
+     * [$validEvent 有效事件]
+     * @var [type]
+     */
+    public static $validEvent = [
+        'shipping information approved by australia post',
+        'dhl已取件',
+        'shipment picked up',
+        'the shipment has been processed in the parcel center',
+        'the shipment has arrived in the destination country',
+        'in transit',
+        'on its way to our depot',
+        'parcel collected',
+        'left fedex origin facility',
+        'trakpak process centre uk',
+        'collected',
+        'on route to hub',
+        'arrived at sorting center',
+        'item received',
+        'shipment received at origin depot',
+        'sorted to chute',
+        'departure scan',
+        'collection scan',
+        'pickup Scan',
+        'accepted at usps origin facilit',
+        'your parcel is at our sort centre',
+    ];
+    /**
+     * [$completeEvent 完成事件]
+     * @var [type]
+     */
+    public static $completeEvent = [
+        'delivered',
+        'zugestellt',
+        '已派送-签收人',
+        'picked up from dpd parcelShop by consignee',
+        '已送达',
+        'pod available online',
+        'paper pod received for imaging',
+    ];
+    /**
+     * [$exceptionMsg 异常信息 1-客人不在2-地址问题3-需自提4-退回5-清关6-待付关税7-客人拒收]
+     * @var [type]
+     */
+    protected $exceptionMsg = [
+        'not home'                 => 1,
+        'not there'                => 1,
+        'not located'              => 1,
+        'not available'            => 1,
+        'not present'              => 1,
+        'business closed'          => 1,
+        'company closed'           => 1,
+        'driver left card'         => 1,
+        'address not correct'      => 2,
+        'consignee address'        => 2,
+        'address error'            => 2,
+        'address information'      => 2,
+        'address error'            => 2,
+        'awaiting collection'      => 3,
+        'ready for pick up'        => 3,
+        'pickup parcelshop'        => 3,
+        'available for collection' => 3,
+        'held for collection'      => 3,
+        'awaiting customer pickup' => 3,
+        'returned'                 => 4,
+        'customs clearance'        => 5,
+        'clearance instructions'   => 5,
+        'broker'                   => 5,
+        'payment'                  => 6,
+        'duties '                  => 6,
+        'taxes'                    => 6,
+        'charges'                  => 6,
+        'refused'                  => 7,
+    ];
     /**
      * [log 日志]
      * @Author   Tinsy
@@ -155,5 +228,47 @@ class ConfigUtils
     public static function setLogPath($log_path)
     {
         self::$logPath = $log_path;
+    }
+    /**
+     * [setCarrierData description]
+     * @Author   Tinsy
+     * @DateTime 2018-07-16T15:04:30+0800
+     * @param    [type]                   $carrier_code [description]
+     * @param    [type]                   $carrier_data [description]
+     */
+    public static function setCarrierData($carrier_code, $key, $value)
+    {
+        self::$carrierData[$carrier_code][$key] = $value;
+    }
+    /**
+     * [setExceptionMsg description]
+     * @Author   Tinsy
+     * @DateTime 2018-07-17T09:36:31+0800
+     * @param    [type]                   $msg  [description]
+     * @param    [type]                   $code [description]
+     */
+    public static function setExceptionMsg($msg, $code)
+    {
+        self::$exceptionMsg[$msg] = $code;
+    }
+    /**
+     * [setValidEvent description]
+     * @Author   Tinsy
+     * @DateTime 2018-07-17T09:52:39+0800
+     * @param    [type]                   $event [description]
+     */
+    public static function setValidEvent($event)
+    {
+        self::$validEvent[] = $event;
+    }
+    /**
+     * [setCompleteEvent description]
+     * @Author   Tinsy
+     * @DateTime 2018-07-17T09:53:17+0800
+     * @param    [type]                   $event [description]
+     */
+    public static function setCompleteEvent($event)
+    {
+        self::$completeEvent[] = $event;
     }
 }
